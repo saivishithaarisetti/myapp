@@ -14,15 +14,6 @@ import GradesReportPage from './pages/GradesReportPage';
 import './App.css';
 
 
-const MyAppComponent = () => {
-  return (
-    <div>
-      <h2>My App Component</h2>
-      <p>This is a placeholder component.</p>
-    </div>
-  );
-};
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
