@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename='/myapp'>
       <div className="App">
         {isLoggedIn && <Navbar />}
         <div className="main-content">
