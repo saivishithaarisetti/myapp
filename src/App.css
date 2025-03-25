@@ -50,3 +50,13 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.content {
+  width: 100%;
+  transition: margin-left 0.3s;
+}
+
+.content.with-sidenav {
+  margin-left: 250px; 
+  width: calc(100% - 250px);
+}

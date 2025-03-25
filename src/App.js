@@ -25,8 +25,7 @@ function App() {
     setIsLoggedIn(false);
   };
 
-  // Determine if SideNav should be shown
-  const shouldShowSideNav = isLoggedIn && !location.pathname.endsWith('/class/:classId');
+  const shouldShowSideNav = isLoggedIn && location.pathname.includes('/class/');
 
   return (
     <div className="App">
