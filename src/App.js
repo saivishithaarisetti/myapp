@@ -25,14 +25,10 @@ function App() {
     setIsLoggedIn(false);
   };
 
-  const shouldShowSideNav = isLoggedIn && location.pathname.includes('/class/');
-
   return (
     <div className="App">
       {isLoggedIn && <Navbar />}
       <div className="main-content">
-        {shouldShowSideNav && <SideNav onLogout={handleLogout} />}
-        <div className={`content ${shouldShowSideNav ? 'with-sidenav' : ''}`}>
           <Routes>
             <Route
               path="/login"
@@ -99,7 +95,6 @@ function App() {
           </Routes>
         </div>
       </div>
-    </div>
   );
 }
 
