@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import SideNav from './components/SideNav';
 import AttendancePage from './pages/AttendancePage';
@@ -13,9 +13,9 @@ import AssignmentsReportPage from './pages/AssignmentsReportPage';
 import GradesReportPage from './pages/GradesReportPage';
 import './App.css';
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -25,84 +25,90 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  // Determine if SideNav should be shown
+  const shouldShowSideNav = isLoggedIn && !location.pathname.endsWith('/dashboard');
+
   return (
-    <Router basename='/myapp'>
-      <div className="App">
-        {isLoggedIn && <Navbar />}
-        <div className="main-content">
-          {isLoggedIn && window.location.pathname !== '/dashboard' && (
-            <SideNav onLogout={handleLogout} />
-          )}
-          <div className="content">
-            <Routes>
-              <Route
-                path="/login"
-                element={
-                  isLoggedIn ? (
-                    <Navigate to="/dashboard" />
-                  ) : (
-                    <LoginPage onLogin={handleLogin} />
-                  )
-                }
-              />
-              <Route
-                path="/dashboard"
-                element={
-                  isLoggedIn ? <Dashboard /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/class/:classId"
-                element={
-                  isLoggedIn ? <ClassDetailsPage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/attendance"
-                element={
-                  isLoggedIn ? <AttendancePage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/assignments"
-                element={
-                  isLoggedIn ? <AssignmentPage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/marks"
-                element={isLoggedIn ? <MarksPage /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/attendance-report"
-                element={
-                  isLoggedIn ? <AttendanceReportPage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/assignments-report"
-                element={
-                  isLoggedIn ? <AssignmentsReportPage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/grades-report"
-                element={
-                  isLoggedIn ? <GradesReportPage /> : <Navigate to="/login" />
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
-                }
-              />
-            </Routes>
-          </div>
+    <div className="App">
+      {isLoggedIn && <Navbar />}
+      <div className="main-content">
+        {shouldShowSideNav && <SideNav onLogout={handleLogout} />}
+        <div className={`content ${shouldShowSideNav ? 'with-sidenav' : ''}`}>
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/dashboard" />
+                ) : (
+                  <LoginPage onLogin={handleLogin} />
+                )
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                isLoggedIn ? <Dashboard /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/class/:classId"
+              element={
+                isLoggedIn ? <ClassDetailsPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/attendance"
+              element={
+                isLoggedIn ? <AttendancePage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/assignments"
+              element={
+                isLoggedIn ? <AssignmentPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/marks"
+              element={isLoggedIn ? <MarksPage /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/attendance-report"
+              element={
+                isLoggedIn ? <AttendanceReportPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/assignments-report"
+              element={
+                isLoggedIn ? <AssignmentsReportPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/grades-report"
+              element={
+                isLoggedIn ? <GradesReportPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
+              }
+            />
+          </Routes>
         </div>
       </div>
-    </Router>
+    </div>
   );
 }
 
-export default App;
+// Wrap App with Router
+export default function WrappedApp() {
+  return (
+    <Router basename='/myapp'>
+      <App />
+    </Router>
+  );
+}
