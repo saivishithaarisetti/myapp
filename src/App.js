@@ -34,6 +34,7 @@ function App() {
           )}
           <div className="content">
             <Routes>
+              <Route path="/myapp" element={<MyAppComponent />} />
               <Route
                 path="/login"
                 element={
