@@ -5,11 +5,13 @@ import '../styles.css';
 
 function AssignmentPage() {
   return (
-    <div className="assignment-page">
+    <div className="assignment-container">
       <SideNav />
-      <div className="content">
+      <div className="assignment-content">
         <h1>Assignment Status</h1>
-        <Assignment />
+        <div className="assignment-table-container">
+          <Assignment />
+        </div>
       </div>
     </div>
   );

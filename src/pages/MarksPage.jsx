@@ -5,11 +5,13 @@ import '../styles.css';
 
 function MarksPage() {
   return (
-    <div className="marks-page">
+    <div className="marks-container">
       <SideNav />
-      <div className="content">
+      <div className="marks-content">
         <h1>Marks and Grades</h1>
-        <MarksGrades />
+        <div className="marks-table-container">
+          <MarksGrades />
+        </div>
       </div>
     </div>
   );

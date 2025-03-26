@@ -5,11 +5,13 @@ import '../styles.css';
 
 function AttendancePage() {
   return (
-    <div className="attendance-page">
+    <div className="attendance-container">
       <SideNav />
-      <div className="content">
+      <div className="attendance-content">
         <h1>Attendance</h1>
-        <Attendance />
+        <div className="attendance-table-container">
+          <Attendance />
+        </div>
       </div>
     </div>
   );

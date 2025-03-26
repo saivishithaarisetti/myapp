@@ -1,62 +1,122 @@
-.app {
-  min-height: 100vh;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.content-container {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+/* Dashboard styles */
+.dashboard {
+  width: 100%;
   margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.reports-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
 }
 
-main {
-  flex-grow: 1;
-  background-color: #f9f9f9;
-  padding: 2rem;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f0f0f0;
-}
-
-button {
+.report-box {
+  background: white;
+  border-radius: 8px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.report-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.45);
 }
 
-/* Global Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.report-box span {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.class-box {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  gap: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgb(119, 158, 209) 0px 18px 36px -18px inset;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.class-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.305);
+}
+
+.class-box span {
+  font-size: 1.5rem;
   color: #333;
-  background-color: #f9f9f9;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+.class-box p {
+  font-size: 0.8rem;
+  padding: 5px;
+  color: #666;
 }
 
-.content {
-  width: 100%;
-  transition: margin-left 0.3s;
+.attendance-report {
+  background-color: #3498db;
 }
 
-.content.with-sidenav {
-  margin-left: 250px; 
-  width: calc(100% - 250px);
+.assignments-report {
+  background-color: #e67e22;
+}
+
+.grades-report {
+  background-color: #2ecc71;
 }

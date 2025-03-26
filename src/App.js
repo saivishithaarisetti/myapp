@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import SideNav from './components/SideNav';
 import AttendancePage from './pages/AttendancePage';
 import AssignmentPage from './pages/AssignmentPage';
 import MarksPage from './pages/MarksPage';
@@ -15,7 +14,6 @@ import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -26,9 +24,10 @@ function App() {
   };
 
   return (
-    <div className="App">
-      {isLoggedIn && <Navbar />}
-      <div className="main-content">
+    <Router basename='/myapp'>
+      <div className="app-container">
+        {isLoggedIn && <Navbar onLogout={handleLogout} />}
+        <div className="content-container">
           <Routes>
             <Route
               path="/login"
@@ -95,14 +94,8 @@ function App() {
           </Routes>
         </div>
       </div>
-  );
-}
-
-// Wrap App with Router
-export default function WrappedApp() {
-  return (
-    <Router basename='/myapp'>
-      <App />
     </Router>
   );
 }
+
+export default App;

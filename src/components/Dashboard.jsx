@@ -28,24 +28,26 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className="reports-grid">
-        <div
-          className="report-box attendance-report"
-          onClick={() => handleReportClick('attendance-report')}
-        >
-          <span>📊 Attendance Report</span>
-        </div>
-        <div
-          className="report-box assignments-report"
-          onClick={() => handleReportClick('assignments-report')}
-        >
-          <span>📚 Assignments Report</span>
-        </div>
-        <div
-          className="report-box grades-report"
-          onClick={() => handleReportClick('grades-report')}
-        >
-          <span>🎓 Grades Report</span>
+      <div className="reports-container">
+        <div className="reports-grid">
+          <div
+            className="report-box attendance-report"
+            onClick={() => handleReportClick('attendance-report')}
+          >
+            <span>📊 Attendance Report</span>
+          </div>
+          <div
+            className="report-box assignments-report"
+            onClick={() => handleReportClick('assignments-report')}
+          >
+            <span>📚 Assignments Report</span>
+          </div>
+          <div
+            className="report-box grades-report"
+            onClick={() => handleReportClick('grades-report')}
+          >
+            <span>🎓 Grades Report</span>
+          </div>
         </div>
       </div>
     </div>
